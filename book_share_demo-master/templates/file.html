@@ -107,13 +107,24 @@
              <li class="nav-item {% ifequal current_page 'book_list' %}active{% endifequal %}" >
                 <a class="nav-link" href="{% url 'books:book_list' %}">图书</a>
               </li>
+          <li class="nav-item {% ifequal current_page 'user_list' %}active{% endifequal %}">
+                <a class="nav-link " href="{% url 'users:user_list' %}">书友</a>
+              </li>            <ul class="navbar-nav mr-auto">
+              <li class="nav-item {% ifequal current_page '' %}active{% endifequal %}">
+                <a class="nav-link " href="{% url 'index' %}">首页</a></li>
+              <li class="nav-item {% ifequal current_page 'book_list' %}active{% endifequal %}" >
+                <a class="nav-link" href="{% url 'books:book_list' %}">图书</a>
+              </li>
+              <li class="nav-item {% ifequal current_page 'user_list' %}active{% endifequal %}">
+                <a class="nav-link " href="{% url 'users:user_list' %}">书友</a>
+              </li>{% if request.user.is_authenticated %}
           <a
           href="{% url 'books:book_list' %}"  class="px10 "> <i class="f16 iconfont icon-category"></i> 互联网 </a> <a href="{% url 'books:book_list' %}" class="px10 "> <i class="f16 iconfont icon-category"></i> 云计算&amp;大数据 </a> <a
           href="{% url 'books:book_list' %}"  class="px10 "> <i class="f16 iconfont icon-category"></i> 人工智能 </a> <a href="{% url 'books:book_list' %}" class="px10 "> <i class="f16 iconfont icon-category"></i> 设计 </a> <a
-          href="{% url 'books:book_list' %}" class="px10 "> <i class="f16 iconfont icon-category"></i> 职场办公 </a>
-      </div>
+          href="{% url 'books:book_list' %}" class="px10 "> <i class="f16 iconfont icon-category"></i> 职场办公 </a> </div>
     </nav>
-
+{% else %}
+{% endif %}
 
   </aside>
    <div class="rel column docify-fixed-body is-main" data-hasbar="true" style="height: auto !important;">
