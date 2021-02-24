@@ -33,4 +33,5 @@ urlpatterns = [
     path('comment/', include('comments.urls', namespace='comments')),
     # search
     path('search/', include('haystack.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+    # (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

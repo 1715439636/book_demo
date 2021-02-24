@@ -8,6 +8,13 @@ from utils.checks import check_is_owner
 
 from .models import Book, Category
 from .forms import UploadBookForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import authenticate, login, logout
+# from .models import UserInfo, Email_Message, Wastes
+from django.contrib.auth.models import AnonymousUser
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class UploadBookView(LoginRequiredMixin, View):
@@ -89,26 +96,59 @@ class BookListView(View):
         current_page = 'book_list'
         # 取出所有图书
         books = Book.objects.all()
+        paginator = Paginator(books, 12)  # 每页显示25条
         # 取出所有图书分类
         categories = Category.objects.all()
 
         # 获取前端传入的分类id, 默认0是全部分类
-        current_category_id = request.GET.get('category', 0)
-
-        fake_books = [1, 2, 3, 4, 5]
-
-        if current_category_id:
-            books = books.filter(category_id=int(current_category_id))
-            # 家测试图书数据
-            fake_books = list(range(0, len(books) * 10))
-
-        return render(request, 'book-list.html', {
-            'books': books,
-            'fake_books': fake_books,
+        current_category_id = request.GET.get('category')
+        books = paginator.get_page(current_category_id)
+        return render(request, 'book-list.html'
+                      , {
+            'books': books ,
+            # 'fake_books': fake_books,
             'categories': categories,
             'current_page': current_page,
             'current_category_id': current_category_id,
-        })
+        }
+                      )
+
+        # fake_books = []
+
+
+
+        # if current_category_id:
+        #     for user in books:
+        #         if current_category_id in user.address:
+        #             fake_books.append(user)
+        #
+        # if categories:
+        #     paginator = Paginator(books, 2)
+        #     page = request.GET.get('page')
+        #     try:
+        #         contacts = paginator.page(page)
+        #     except PageNotAnInteger:
+        #         contacts = paginator.page(1)
+        #     except EmptyPage:
+        #         contacts = paginator.page(paginator.num_pages)
+        #     return render(request, 'book-list.html', {'contacts': contacts ,})
+        # else:
+        #     info = '暂无数据'
+        #     return render(request, 'book-list.html', {'info': info})
+        # if current_category_id:
+        #     books = books.filter(category_id=int(current_category_id))
+        #     # 测试图书数据
+        #     fake_books = list(range(0, len(books) * 1))
+        #
+        # return render(request, 'book-list.html'
+        #               , {
+        #     'books': books ,
+        #     'fake_books': fake_books,
+        #     'categories': categories,
+        #     'current_page': current_page,
+        #     'current_category_id': current_category_id,
+        # }
+        #               )
 
 
 class BookDetailView(View):

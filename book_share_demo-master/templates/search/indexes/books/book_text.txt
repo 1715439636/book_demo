@@ -1,2 +1,8 @@
 {{ object.name }}
 {{ object.desc }}
+{{ object.update_time }}
+{{ object.publishing_time }}
+{{ object.update_time }}
+{{ object.update_time }}
+{{ object.update_time }}
+{{ object.update_time }}

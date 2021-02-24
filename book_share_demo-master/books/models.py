@@ -39,6 +39,8 @@ class Book(models.Model):
                                     verbose_name='上传者')
     pdf = models.FileField(upload_to='resource/pdf', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name='上传时间')
+    update_time = models.DateTimeField(auto_now_add=True, verbose_name='更新时间')
+
 
     class Meta:
         verbose_name = '图书'

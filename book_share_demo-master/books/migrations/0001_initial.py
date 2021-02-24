@@ -23,6 +23,8 @@ class Migration(migrations.Migration):
                 ('desc', models.TextField(verbose_name='简介')),
                 ('pdf', models.FileField(blank=True, null=True, upload_to='resource/pdf')),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='上传时间')),
+                ('update_time', models.DateTimeField(auto_now_add=True, verbose_name='更新时间')),
+                ('publishing_time', models.DateTimeField(auto_now_add=True, verbose_name='书出版时间')),
             ],
             options={
                 'verbose_name': '图书',

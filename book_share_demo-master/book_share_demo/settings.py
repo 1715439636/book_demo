@@ -87,14 +87,14 @@ WSGI_APPLICATION = 'book_share_demo.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-
+# 8.133.167.76
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'book_share_db',        #数据库名字
         'USER': 'root',          #账号
         'PASSWORD': '1234',      #密码
-        'HOST': '127.0.0.1',    #IP
+        'HOST': '8.133.167.76',    #IP
         'PORT': '3306',                   #端口
         'OPTIONS': {
             'init_command': 'SET default_storage_engine=INNODB,character_set_connection=utf8,collation_connection=utf8_unicode_ci;'
